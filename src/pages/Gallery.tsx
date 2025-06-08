@@ -1,14 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { fetchPhotos } from '../services/pexels';
 import type { Photo } from '../types/photo';
-import MasonryGrid from '../components/MasonryGrid';
-import SearchBar from '../components/SearchBar';
-import Spinner from '../components/Spinner';
+import { MasonryGrid, SearchBar, Spinner } from '../components';
+import { useMobileBreakpoint } from '../hooks';
+import { useSearchParams } from 'react-router-dom';
 
 const Gallery = () => {
-  const [searchTerm, setSearchTerm] = useState('hawaii');
+  const [searchParams] = useSearchParams();
+  const rawQuery = searchParams.get('q') || 'hawaii';
+  const searchTerm = rawQuery.replace(/-/g, ' ');
   const observerRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useMobileBreakpoint();
 
   const {
     data,
@@ -22,6 +25,7 @@ const Gallery = () => {
     queryFn: ({ pageParam = 1 }) => fetchPhotos(searchTerm, 30, pageParam),
     initialPageParam: 1,
     getNextPageParam: lastPage => lastPage.nextPage,
+    staleTime: 1000 * 60 * 5,
   });
 
   const allPhotos: Photo[] = data?.pages.flatMap(p => p.photos) || [];
@@ -57,7 +61,7 @@ const Gallery = () => {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      <MasonryGrid photos={allPhotos} columns={3} />
+      <MasonryGrid photos={allPhotos} columns={isMobile ? 2 : 3} />
       {isFetchingNextPage && <Spinner />}
       <div ref={observerRef} style={{ height: '1px' }} />
     </>

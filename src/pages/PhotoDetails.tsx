@@ -3,7 +3,7 @@ import type { Photo } from '../types/photo';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 `;
 
@@ -13,13 +13,15 @@ const Img = styled.img`
 `;
 
 const Info = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 1rem;
   color: #444;
+  max-width: 800px;
+  margin: 0 auto;
 `;
 
 const BackButton = styled.button`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: none;
@@ -44,10 +46,19 @@ const PhotoDetails = () => {
       <Img src={photo.src.large} alt={photo.alt} />
       <Info>
         <h2>{photo.alt || 'No Title'}</h2>
-        <p>Photographer: {photo.photographer}</p>
+        <p>Photographer: 
+          <a
+            href={photo.photographer_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${photo.photographer} profile`}
+          >
+            {photo.photographer}
+          </a>
+        </p>
         <p>Date: {new Date().toLocaleDateString()}</p>
       </Info>
-      <BackButton onClick={() => navigate(-1)}>← Back</BackButton>
+      <BackButton aria-label="Back to Galerry" onClick={() => navigate(-1)}>← Back</BackButton>
     </Container>
   );
 };

@@ -21,7 +21,7 @@ const Column = styled.div`
   flex: 1;
 `;
 
-const MasonryGrid = ({ photos, columns = 3 }: MasonryGridProps) => {
+export const MasonryGrid = ({ photos, columns = 3 }: MasonryGridProps) => {
   const [visibleIndexes, setVisibleIndexes] = useState<number[]>([]);
   const columnRefs = useRef<HTMLDivElement[]>([]);
   const navigate = useNavigate();
@@ -82,5 +82,3 @@ const MasonryGrid = ({ photos, columns = 3 }: MasonryGridProps) => {
     </GridContainer>
   );
 };
-
-export default MasonryGrid;

@@ -1,6 +1,7 @@
 export interface Photo {
   id: number;
   photographer: string;
+  photographer_url: string;
   src: {
     original: string;
     large: string;

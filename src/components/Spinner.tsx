@@ -20,10 +20,8 @@ const SpinnerIcon = styled.div`
   animation: ${spin} 1s linear infinite;
 `;
 
-const Spinner = () => (
+export const Spinner = () => (
   <SpinnerWrapper>
     <SpinnerIcon />
   </SpinnerWrapper>
 );
-
-export default Spinner;

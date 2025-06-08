@@ -8,8 +8,6 @@ const HeaderWrapper = styled.header`
   text-align: center;
 `;
 
-const Header = () => {
-  return <HeaderWrapper>Masonry App</HeaderWrapper>;
+export const Header = () => {
+  return <HeaderWrapper>Masonry App Gallery</HeaderWrapper>;
 };
-
-export default Header;
