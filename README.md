@@ -20,7 +20,7 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 ### Tests
 
 1. Unit Test: ```npm run test```
-2. Run: ```npm run test:e2e```
+2. E2E Test: ```npm run test:e2e```
 
 ## Techs
 - React / TypeScript
