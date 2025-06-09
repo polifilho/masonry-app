@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { SearchBar } from '../../components';
+import { SearchBar } from '../../../components';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 

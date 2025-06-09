@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import PhotoDetails from '../../pages/PhotoDetails';
+import PhotoDetails from '../../../pages/PhotoDetails';
 
 const mockNavigate = vi.fn();
 const mockPhoto = {

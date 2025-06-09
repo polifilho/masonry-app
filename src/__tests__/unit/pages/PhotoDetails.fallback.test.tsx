@@ -10,7 +10,7 @@ vi.doMock('react-router-dom', async () => {
   };
 });
 
-const PhotoDetails = (await import('../../pages/PhotoDetails')).default;
+const PhotoDetails = (await import('../../../pages/PhotoDetails')).default;
 
 describe('PhotoDetails (fallback)', () => {
   it('should render an error message when there is no photo', () => {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { MasonryGrid } from '../../components';
-import type { Photo } from '../../types';
+import { MasonryGrid } from '../../../components';
+import type { Photo } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 
 const mockPhotos: Photo[] = [

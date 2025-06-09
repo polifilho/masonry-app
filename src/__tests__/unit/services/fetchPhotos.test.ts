@@ -1,4 +1,4 @@
-import { fetchPhotos } from '../../services/pexels';
+import { fetchPhotos } from '../../../services/pexels';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 describe('fetchPhotos', () => {
