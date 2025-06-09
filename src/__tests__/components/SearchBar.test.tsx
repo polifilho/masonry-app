@@ -20,6 +20,7 @@ const renderWithRouter = (ui: React.ReactElement) =>
 describe('SearchBar', () => {
   beforeEach(() => {
     mockNavigate.mockClear();
+    mockOnSearch.mockClear();
   });
 
   it('should render input and button', () => {
@@ -41,9 +42,14 @@ describe('SearchBar', () => {
 
   it('do not redirect if field is empty', () => {
     renderWithRouter(<SearchBar onSearch={mockOnSearch} />);
+
+    const input = screen.getByPlaceholderText(/search images/i);
     const button = screen.getByRole('button', { name: /search/i });
+
+    fireEvent.change(input, { target: { value: '' } });
     fireEvent.click(button);
 
-    expect(mockNavigate).not.toHaveBeenCalled();
+    expect(screen.getByText(/please, type a term to search/i)).toBeInTheDocument();
+    expect(mockOnSearch).not.toHaveBeenCalled();
   });
 });

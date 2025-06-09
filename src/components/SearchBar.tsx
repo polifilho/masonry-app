@@ -31,19 +31,31 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+`;
+
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
 
 export const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   
     const trimmed = query.trim();
-    if (!trimmed) return;
+    if (!trimmed) {
+      setError('Please, type a term to search.');
+      return;
+    }
   
+    setError('');
     const slugified = trimmed.toLowerCase().replace(/\s+/g, '-');
     onSearch(slugified);
   };  
@@ -59,6 +71,7 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
         />
         <Button type="submit">Search</Button>
       </Form>
+      {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
     </Wrapper>
   );
 };
