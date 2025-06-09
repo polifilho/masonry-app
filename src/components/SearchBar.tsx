@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   position: sticky;
@@ -32,26 +31,33 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (term: string) => void;
+}
+
+export const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const slugified = query.trim().toLowerCase().replace(/\s+/g, '-');
-    navigate(`/search?q=${slugified}`);
-  };
+  
+    const trimmed = query.trim();
+    if (!trimmed) return;
+  
+    const slugified = trimmed.toLowerCase().replace(/\s+/g, '-');
+    onSearch(slugified);
+  };  
 
   return (
     <Wrapper>
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
-          placeholder="Buscar imagens"
+          placeholder="Search Images"
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        <Button type="submit">Buscar</Button>
+        <Button type="submit">Search</Button>
       </Form>
     </Wrapper>
   );

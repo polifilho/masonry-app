@@ -4,7 +4,7 @@ import { fetchPhotos } from '../services/pexels';
 import type { Photo } from '../types/photo';
 import { MasonryGrid, SearchBar, Spinner } from '../components';
 import { useMobileBreakpoint } from '../hooks';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Gallery = () => {
   const [searchParams] = useSearchParams();
@@ -12,6 +12,7 @@ const Gallery = () => {
   const searchTerm = rawQuery.replace(/-/g, ' ');
   const observerRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMobileBreakpoint();
+  const navigate = useNavigate();
 
   const {
     data,
@@ -51,7 +52,7 @@ const Gallery = () => {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   const handleSearch = (term: string) => {
-    setSearchTerm(term);
+    navigate(`/search?q=${term}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

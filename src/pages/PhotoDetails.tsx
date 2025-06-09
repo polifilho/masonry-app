@@ -58,7 +58,7 @@ const PhotoDetails = () => {
         </p>
         <p>Date: {new Date().toLocaleDateString()}</p>
       </Info>
-      <BackButton aria-label="Back to Galerry" onClick={() => navigate(-1)}>← Back</BackButton>
+      <BackButton aria-label="Back to Galery" onClick={() => navigate(-1)}>← Back</BackButton>
     </Container>
   );
 };
