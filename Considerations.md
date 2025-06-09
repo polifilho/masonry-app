@@ -10,12 +10,23 @@ Regarding the techs, below there are some considerations:
 
 - Another nice point about this project, in my previous experience, I used cypress for e2e, but now I use Playwright, because I was studying about it and I could see it is preety simple to use, the configuration is also easy and the community is growing.
 
-- React Query I already used in other projects, and here I could use the cacche and other benefits.
-
 - ESLint is an item that I think helpful for projects to keep a good code quality and validation.
 
 - I use Vitest and I learn it during of this challenge. Previously I used Jest.
 
+- I added pagination using infinit scroll with useInfiniteQuery.
+
+
+## Appoachs
+
+- useCallback and useMemo help me to avoid re-render for my components
+- Lazy from react for my pages, it helps me to load my component only when is really necessary. Code Splitting
+- I use useInfiniteQuery for my pagination with infinit scroll, it helps me with incremental image loading.
+- I thought that accessibility would be an important point and I added it on the project.
+- Using slugs for URL params when there is space beteen words like 'Rio de Janeiro' or 'New York'
+- App Responsive using breakpoints
+- For UX I created ErrorBoundary component, added feedback when there is an error and when content is loading.
+- Avoid request when the input is empty.
 
 ### Thank You!
 
